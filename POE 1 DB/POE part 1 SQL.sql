@@ -87,7 +87,7 @@ VALUES
 SELECT * FROM Categories;
 SELECT * FROM Users;
 SELECT * FROM Events;
-SELECT * FROM Results
+SELECT * FROM Results;
 
 -- Insert Event Enrolments
 INSERT INTO EventEnrolments (CategoryId, ParticipantId)
