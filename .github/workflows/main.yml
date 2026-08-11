@@ -1,0 +1,43 @@
+name: Validate Repository Structure
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+jobs:
+  validate-structure:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Verify /docs Folder Exists
+        run: |
+          if [ ! -d "docs" ]; then
+            echo "::error::The /docs directory is missing!"
+            exit 1
+          fi
+          echo "/docs folder exists."
+
+      - name: Verify Documentation Files
+        run: |
+          missing=0
+
+          if [ ! -f "docs/ERD (1).pdf" ]; then
+            echo "::warning::ERD (1).pdf not found in /docs"
+            missing=1
+          fi
+
+          if [ ! -f "docs/POE part 1 SQL.sql" ]; then
+            echo "::warning::POE part 1 SQL.sql not found in /docs"
+            missing=1
+          fi
+
+          if [ ! -f "docs/POEPART 1 endpoint.md" ]; then
+            echo "::warning::POEPART 1 endpoint.md not found in /docs"
+            missing=1
+          fi
+
+          if [ "$missing" -eq 0 ]; then
+            echo "All required documentation files are present."
+          fi
