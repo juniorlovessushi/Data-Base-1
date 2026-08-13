@@ -100,3 +100,4 @@ INSERT INTO Results (EnrolmentId, FinishTime, Position)
 VALUES
 (1, '03:45:12', 12),
 (2, '01:52:04', 5);
+
