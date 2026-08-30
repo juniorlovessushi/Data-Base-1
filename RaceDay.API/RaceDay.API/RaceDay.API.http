@@ -1,0 +1,6 @@
+ @RaceDay.API_HostAddress = https://localhost:7000
+
+GET {{RaceDay.API_HostAddress}}/api/events/
+Accept: application/json
+
+###
