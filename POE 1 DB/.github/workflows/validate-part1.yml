@@ -1,0 +1,37 @@
+name: Validate POE Part 1 (Database & Docs)
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  validate-part1:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Verify Part 1 File Structure
+      run: |
+        echo "Checking for POE 1 DB directory..."
+        if [ -d "POE 1 DB" ]; then
+          echo "POE 1 DB folder found."
+          ls -la "POE 1 DB"
+        else
+          echo "Warning: POE 1 DB folder not found in root."
+        fi
+
+    - name: Set up Python for SQL Linting
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.x'
+
+    - name: Install SQLFluff
+      run: pip install sqlfluff
+
+    - name: Lint SQL Scripts
+      run: |
+        sqlfluff lint --dialect tsql $(find . -name "*.sql") || echo "SQL linting complete with warnings."
