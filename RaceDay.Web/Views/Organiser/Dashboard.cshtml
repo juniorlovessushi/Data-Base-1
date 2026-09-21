@@ -1,0 +1,111 @@
+﻿@model IEnumerable<RaceDay.Web.ViewModels.EventViewModel>
+
+@{
+    ViewData["Title"] = "Organiser Dashboard";
+}
+
+<div class="container py-4">
+
+    <!-- Header -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h2 class="fw-bold">Organiser Dashboard</h2>
+            <p class="text-muted mb-0">
+                Manage and view your race events.
+            </p>
+        </div>
+
+        <a asp-controller="Organiser"
+           asp-action="CreateEvent"
+           class="btn btn-primary">
+            + Create New Event
+        </a>
+    </div>
+
+
+    <!-- Events -->
+    @if (Model != null && Model.Any())
+    {
+        <div class="row g-4">
+
+            @foreach (var item in Model)
+            {
+                <div class="col-md-4">
+
+                    <div class="card bg-dark text-white border-secondary h-100 shadow-sm">
+
+                        <!-- Banner -->
+                        @if (!string.IsNullOrWhiteSpace(item.BannerImageUrl))
+                        {
+                            <img src="@item.BannerImageUrl"
+                                 class="card-img-top"
+                                 alt="@item.EventName"
+                                 style="height: 200px; object-fit: cover;" />
+                        }
+                        else
+                        {
+                            <div class="d-flex align-items-center justify-content-center bg-secondary"
+                                 style="height: 200px;">
+                                <span class="text-white">
+                                    No banner image
+                                </span>
+                            </div>
+                        }
+
+
+                        <!-- Event Information -->
+                        <div class="card-body">
+
+                            <h5 class="card-title fw-bold">
+                                @item.EventName
+                            </h5>
+
+                            <p class="card-text mb-2">
+                                <i class="bi bi-geo-alt"></i>
+                                @item.Location
+                            </p>
+
+                            <p class="card-text text-muted small mb-2">
+                                <i class="bi bi-calendar"></i>
+                                @item.EventDate.ToString("yyyy-MM-dd HH:mm")
+                            </p>
+
+                            @if (!string.IsNullOrWhiteSpace(item.OrganiserName))
+                            {
+                                <p class="card-text text-muted small">
+                                    Organiser: @item.OrganiserName
+                                </p>
+                            }
+
+                        </div>
+
+                    </div>
+
+                </div>
+            }
+
+        </div>
+    }
+    else
+    {
+        <!-- No Events -->
+        <div class="text-center py-5">
+
+            <h4 class="fw-bold">
+                No events created yet
+            </h4>
+
+            <p class="text-muted">
+                Create your first race event using the button above.
+            </p>
+
+            <a asp-controller="Organiser"
+               asp-action="CreateEvent"
+               class="btn btn-primary">
+                Create Event
+            </a>
+
+        </div>
+    }
+
+</div>

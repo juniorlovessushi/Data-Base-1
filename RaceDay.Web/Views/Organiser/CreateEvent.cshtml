@@ -1,0 +1,43 @@
+﻿@model RaceDay.Web.ViewModels.CreateEventViewModel
+
+<div class="row justify-content-center mt-4">
+    <div class="col-md-6">
+        <div class="card shadow-lg border-0 rounded-3 bg-dark text-white">
+            <div class="card-header create-card-header text-white text-center py-3">
+                <h4 class="mb-0 fw-bold">Create Race Event</h4>
+            </div>
+            <div class="card-body p-4">
+
+                <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+                <form asp-controller="Organiser" asp-action="CreateEvent" method="post" enctype="multipart/form-data">
+                    <div class="mb-3">
+                        <label asp-for="EventName" class="form-label fw-semibold">Event Name</label>
+                        <input asp-for="EventName" class="form-control" placeholder="e.g. Autumn Marathon 2026" required />
+                        <span asp-validation-for="EventName" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="EventDate" class="form-label fw-semibold">Date</label>
+                        <input asp-for="EventDate" type="datetime-local" class="form-control" required />
+                        <span asp-validation-for="EventDate" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Location" class="form-label fw-semibold">Location</label>
+                        <input asp-for="Location" class="form-control" placeholder="e.g. Cape Town Sports Complex" required />
+                        <span asp-validation-for="Location" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="BannerImage" class="form-label fw-semibold">Event Banner Image</label>
+                        <input asp-for="BannerImage" type="file" class="form-control" accept="image/*" />
+                        <span asp-validation-for="BannerImage" class="text-danger"></span>
+                    </div>
+
+                    <button type="submit" class="btn btn-success w-100 py-2 fw-semibold">Create Event</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

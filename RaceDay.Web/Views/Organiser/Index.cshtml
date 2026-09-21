@@ -1,0 +1,53 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<!-- Hero Banner Section -->
+<div class="p-5 mb-4 rounded-3 text-white shadow"
+     style="background: linear-gradient(135deg, rgba(30, 41, 59, 0.9), rgba(15, 23, 42, 0.95)), url('/Images/vangof') center/cover no-repeat;">
+    <div class="container-fluid py-4 text-center">
+        <h1 class="display-4 fw-bold">Welcome to RaceDay</h1>
+        <p class="fs-4 text-light col-md-8 mx-auto">
+            Manage, discover, and participate in upcoming race events with ease.
+        </p>
+        <div class="d-flex justify-content-center gap-3 mt-4">
+            <a asp-controller="Organiser" asp-action="DashBoard" class="btn btn-primary btn-lg px-4 fw-semibold">
+                Organiser Dashboard
+            </a>
+            <a asp-controller="Organiser" asp-action="CreateEvent" class="btn btn-outline-light btn-lg px-4 fw-semibold">
+                + Create Race
+            </a>
+        </div>
+    </div>
+</div>
+
+<!-- Quick Feature Cards -->
+<div class="row text-center mt-5">
+    <div class="col-md-4 mb-4">
+        <div class="card h-100 p-3 shadow-sm">
+            <div class="card-body">
+                <div class="fs-1 text-primary mb-2">🏁</div>
+                <h5 class="card-title fw-bold">Race Events</h5>
+                <p class="card-text text-muted">Create and manage your competitive running and cycling events effortlessly.</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 mb-4">
+        <div class="card h-100 p-3 shadow-sm">
+            <div class="card-body">
+                <div class="fs-1 text-primary mb-2">📊</div>
+                <h5 class="card-title fw-bold">Organiser Tools</h5>
+                <p class="card-text text-muted">Track enrolments, manage race categories, and update event details in real-time.</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 mb-4">
+        <div class="card h-100 p-3 shadow-sm">
+            <div class="card-body">
+                <div class="fs-1 text-primary mb-2">⚡</div>
+                <h5 class="card-title fw-bold">Fast Integration</h5>
+                <p class="card-text text-muted">Powered by a robust RESTful API to deliver fast, seamless data access.</p>
+            </div>
+        </div>
+    </div>
+</div>

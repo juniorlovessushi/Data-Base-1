@@ -1,0 +1,43 @@
+﻿@model List<RaceDay.Web.ViewModels.EnrolmentViewModel>
+@{
+    ViewData["Title"] = "My Registered Races";
+}
+
+<div class="container py-4">
+    <h2 class="fw-bold mb-4">My Enrolled Events</h2>
+
+    @if (!Model.Any())
+    {
+        <div class="alert alert-info shadow-sm">
+            You haven't registered for any races yet! <a asp-controller="Home" asp-action="Index" class="alert-link">Browse events here</a>.
+        </div>
+    }
+    else
+    {
+        <div class="table-responsive shadow-sm rounded">
+            <table class="table table-hover align-middle mb-0">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Event</th>
+                        <th>Category</th>
+                        <th>Race Date</th>
+                        <th>Fee Paid</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var race in Model)
+                    {
+                        <tr>
+                            <td class="fw-bold text-primary">@race.EventName</td>
+                            <td><span class="badge bg-secondary">@race.CategoryName</span></td>
+                            <td>@race.RaceDate.ToString("yyyy-MM-dd")</td>
+                            <td>R@race.FeePaid</td>
+                            <td><span class="badge bg-success">Confirmed</span></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+</div>

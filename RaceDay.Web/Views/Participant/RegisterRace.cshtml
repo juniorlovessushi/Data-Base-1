@@ -1,0 +1,44 @@
+﻿@model RaceDay.Web.ViewModels.CreateEnrolmentViewModel
+@{
+    ViewData["Title"] = "Race Registration";
+}
+
+<div class="container py-4">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-lg p-4">
+                <h2 class="fw-bold text-primary mb-3">Event Registration</h2>
+                <p class="text-secondary">Select your category and enter your details to sign up for race day.</p>
+                <hr />
+
+                <form asp-action="RegisterRace" method="post">
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Select Category</label>
+                        <select asp-for="CategoryId" class="form-select" required>
+                            <option value="">-- Choose Category / Distance --</option>
+                            @if (ViewBag.Categories != null)
+                            {
+                                foreach (var cat in ViewBag.Categories)
+                                {
+                                    <option value="@cat.CategoryId">@cat.CategoryName - @cat.DistanceKm KM (R@cat.EntryFee)</option>
+                                }
+                            }
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="ParticipantName" class="form-label fw-bold">Full Name</label>
+                        <input asp-for="ParticipantName" class="form-control" placeholder="John Doe" required />
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="ParticipantEmail" class="form-label fw-bold">Email Address</label>
+                        <input asp-for="ParticipantEmail" type="email" class="form-control" placeholder="john@example.com" required />
+                    </div>
+
+                    <button type="submit" class="btn btn-primary w-100 py-2 mt-3 shadow-sm">Confirm & Register</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
